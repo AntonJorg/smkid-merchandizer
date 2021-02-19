@@ -9,7 +9,7 @@ weightsFile = "pose/mpi/pose_iter_160000.caffemodel"
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
 # Read image
-frame = cv2.imread("single.jpg")
+frame = cv2.imread("test.jpg")
 
 # Specify the input image dimensions
 inWidth = 368
@@ -27,7 +27,10 @@ H = output.shape[2]
 W = output.shape[3]
 # Empty list to store the detected keypoints
 points = []
-for i in range(len()):
+
+threshold = 0.01
+
+for i in range(15):
     # confidence map of corresponding body's part.
     probMap = output[0, i, :, :]
 
@@ -35,26 +38,26 @@ for i in range(len()):
     minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
 
     # Scale the point to fit on the original image
-    x = (frameWidth * point[0]) / W
-    y = (frameHeight * point[1]) / H
+    x = (inWidth * point[0]) / W
+    y = (inHeight * point[1]) / H
 
-#    if prob &amp;amp;gt; threshold :
-#        cv2.circle(frame, (int(x), int(y)), 15, (0, 255, 255), thickness=-1, lineType=cv.FILLED)
-#        cv2.putText(frame, "{}".format(i), (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1.4, (0, 0, 255), 3, lineType=cv2.LINE_AA)
-#
-#        # Add the point to the list if the probability is greater than the threshold
-#        points.append((int(x), int(y)))
-#    else :
-#        points.append(None)
+    if prob > threshold:
+        cv2.circle(frame, (int(x), int(y)), 6, (0, 255, 255), thickness=-1, lineType=cv2.FILLED)
+        cv2.putText(frame, "{}".format(i), (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, lineType=cv2.LINE_AA)
 
-cv2.imshow("Output-Keypoints",frame)
+        # Add the point to the list if the probability is greater than the threshold
+        points.append((int(x), int(y)))
+    else :
+        points.append(None)
+
+cv2.imshow("Output-Keypoints", frame)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 
-for pair in POSE_PAIRS:
-    partA = pair[0]
-    partB = pair[1]
-
-    if points[partA] and points[partB]:
-        cv2.line(frameCopy, points[partA], points[partB], (0, 255, 0), 3)
+#for pair in POSE_PAIRS:
+#    partA = pair[0]
+#    partB = pair[1]
+#
+#    if points[partA] and points[partB]:
+#        cv2.line(frameCopy, points[partA], points[partB], (0, 255, 0), 3)
