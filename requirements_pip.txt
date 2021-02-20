@@ -1,0 +1,9 @@
+certifi==2020.12.5
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1612953005674/work
+olefile==0.46
+Pillow @ file:///tmp/build/80754af9/pillow_1609786786540/work
+PyQt5==5.12.3
+PyQt5-sip==4.19.18
+PyQtChart==5.12
+PyQtWebEngine==5.12.1
+sip==4.19.24
