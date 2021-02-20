@@ -11,3 +11,14 @@ This project uses a deep learning based pose estimation model from [this article
 3. Place the model weights under pose/mpi
 4. Run main.py
 5. Enjoy!
+
+## Features
+### Current
+- Toggleable S/M-KID hoodie with logo
+- Banger UI
+
+### Planned
+- Other council merch? (Do they even have merch?)
+- Assorted beverages for your right hand
+- Smatso hotkey
+- Ice easter egg (shh don't tell anyone)
