@@ -7,7 +7,7 @@ This project uses a deep learning based pose estimation model from [this article
 ## Quickstart guide
 
 1. Clone the repository to your local machine
-2. Create environment with required libraries from requirements.txt or merchandizer.yml
+2. Create environment with required libraries from requirements_pip.txt, requirements_conda.txt, or merchandizer.yml
 3. Download the Caffe model weights from [here](http://posefs1.perception.cs.cmu.edu/OpenPose/models/pose/mpi/pose_iter_160000.caffemodel)
 4. Place the model weights under pose/mpi
 5. Run main.py
@@ -23,3 +23,4 @@ This project uses a deep learning based pose estimation model from [this article
 - Assorted beverages for your right hand
 - Smatso hotkey
 - Ice easter egg (shh don't tell anyone)
+- Fix random crashes
