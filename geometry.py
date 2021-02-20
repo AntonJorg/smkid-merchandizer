@@ -8,10 +8,10 @@ coordinates = [(168, 24), (168, 72), (136, 88), (128, 136), (128, 168), (208, 88
 # c is some scaling factor that depends on how far away the subject is.
 # w is some scaling factor for the width of arms
 c = 5
-w = 7
+w = 5.5
 def unit_vector(v):
-    if np.linalg.norm(v) == 0:
-        return v
+    if v is None or np.linalg.norm(v) == 0:
+        return np.array([0, 0])
     else:
         return v / np.linalg.norm(v)
 
@@ -32,7 +32,13 @@ def hand(elbow, wrist):
     return d * (wrist - elbow) + wrist
 
 def connect_polygon(overc, forec):
-    return overc[2:] +  forec[:2]
+    return np.vstack((overc[2:,:], forec[:2,:]))
+
+def connect_shoulder(torsoc, overc, left=True):
+    if left:
+        return [torsoc[1], torsoc[1] + overc[1]-overc[0], overc[0], overc[1]]
+    else:
+        return [torsoc[0], torsoc[0] + overc[0]-overc[1], overc[1], overc[0]]
 
 def halfway(l, r):
     v = r - l
@@ -48,16 +54,17 @@ def body_line(neck, root, shoulder_L, shoulder_R, hip_L, hip_R):
     return linefit, meanx
 
 # g is some standard length of the logo
-g = 30
+g = 50
 ratio = 1.381
 def logo(linefit, meanx):
     a, b = linefit[0], linefit[1]
     bottom = np.array([meanx, meanx * a + b])
     if a < 0:
         theta = np.arctan(-a)
+        xtop = meanx - np.cos(theta) * g
     else:
         theta = np.arctan(a)
-    xtop = meanx + np.cos(theta) * g
+        xtop = meanx + np.cos(theta) * g
     top = np.array([xtop, xtop * a + b])
     v = top - bottom
     corner0 = rotate90(v, clockwise=False) * ratio / 2 + bottom
@@ -67,7 +74,7 @@ def logo(linefit, meanx):
     return np.array([corner0, corner1, corner2, corner3]).reshape(4,2)
 
 # l_bottom, fatness, l_tyrenakke
-l_bottom, fatness, l_tyrenakke = 1, 1, 1
+l_bottom, fatness, l_tyrenakke = 10, 25, 30
 def torso(root, shoulder_L, shoulder_R, hip_L, hip_R):
     v_hip, v_shoulder = hip_R - hip_L, shoulder_R - shoulder_L
     v_hip_hat, v_shoulder_hat = unit_vector(v_hip), unit_vector(v_shoulder)
@@ -78,7 +85,7 @@ def torso(root, shoulder_L, shoulder_R, hip_L, hip_R):
     # corner3 = corner1 + v_stomach
     corner4 = shoulder_L + l_tyrenakke * rotate90(v_shoulder_hat, clockwise = False)
     corner5 = shoulder_R + l_tyrenakke * rotate90(v_shoulder_hat, clockwise=False)
-    return np.array([corner1, corner0, corner4, corner5]).reshape((4,2))
+    return np.array([corner5, corner4, corner1, corner0]).reshape((4,2))
 
 coords = parse(coordinates)
 # Neck: 0, Right Shoulder: 1, Right Elbow: 2, Right Wrist: 3, Left Shoulder: 4, Left Elbow: 5, Left Wrist: 6,

@@ -152,6 +152,15 @@
     </item>
     <item>
      <property name="text">
+      <string>Classic</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/classic.png</normaloff>img/classic.png</iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>Harboe</string>
      </property>
      <property name="icon">
@@ -251,6 +260,25 @@
     </property>
     <property name="text">
      <string>GO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>60</y>
+      <width>451</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>BETA v0.0.1: Roblox Tribute Edition</string>
     </property>
    </widget>
   </widget>

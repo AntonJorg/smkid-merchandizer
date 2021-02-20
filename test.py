@@ -19,18 +19,19 @@ class VideoThread(QThread):
     def __init__(self):
         super().__init__()
         self._run_flag = True
+        self.merchstatus = 'Tørstig?'
 
-        self.torsoim = cv2.imread('hoodie/upper_torso.png')
+        self.torsoim = cv2.imread('hoodie/black.png')
 
-        self.forearm_L = cv2.imread('hoodie/forearm_L.png')
-        self.overarm_L = cv2.imread('hoodie/overarm_L.png')
+        self.forearm_L = cv2.imread('hoodie/black.png')#forearm_L.png')
+        self.overarm_L = cv2.imread('hoodie/black.png')#overarm_L.png')
 
-        self.forearm_R = cv2.imread('hoodie/forearm_R.png')
-        self.overarm_R = cv2.imread('hoodie/overarm_R.png')
+        self.forearm_R = cv2.imread('hoodie/black.png')#forearm_R.png')
+        self.overarm_R = cv2.imread('hoodie/black.png')#overarm_R.png')
 
-        self.logoim = cv2.imread('hoodie/logo_smkid.png')
+        self.logoim = cv2.imread('hoodie/logo_smkidsort.png')
 
-        self.bong = cv2.imread('img/bong.png',-1)
+        
 
     def run(self):
 
@@ -38,16 +39,17 @@ class VideoThread(QThread):
         cap = cv2.VideoCapture(0)
         while self._run_flag:
             ret, cv_img = cap.read()
-
             coords = parse(calculate_keypoints(cv_img, blob_size=183))
-            # Neck: 0, Right Shoulder: 1, Right Elbow: 2, Right Wrist: 3, Left Shoulder: 4, Left Elbow: 5, Left Wrist: 6,
-            # Right Hip: 7, Left Hip: 8, Chest: 9
 
-            try:
-                torso_corners = torso(coords[9, :], coords[4, :], coords[1, :], coords[8, :], coords[7, :])
+            if self.merchstatus == "Hoodie":
+
+                # Neck: 0, Right Shoulder: 1, Right Elbow: 2, Right Wrist: 3, Left Shoulder: 4, Left Elbow: 5, Left Wrist: 6,
+                # Right Hip: 7, Left Hip: 8, Chest: 9
+
+                torso_corners = torso(coords[9, :], coords[4, :], coords[1, :], coords[7, :], coords[8, :])
 
                 linefit, meanx = body_line(coords[0, :], coords[9, :], coords[4, :], coords[1, :], coords[8, :],
-                                               coords[7, :])
+                                           coords[7, :])
 
                 loverarm = arm_box(coords[4, :], coords[5, :])
 
@@ -59,7 +61,9 @@ class VideoThread(QThread):
 
                 logoc = logo(linefit, meanx)
 
-                handloc = hand(coords[2, :], coords[3, :])
+                lelbow = connect_polygon(loverarm, lforearm)
+
+                relbow = connect_polygon(roverarm, rforearm)
 
                 cv_img = imtransform(cv_img, self.torsoim, torso_corners)
 
@@ -71,10 +75,15 @@ class VideoThread(QThread):
                 cv_img = imtransform(cv_img, self.overarm_R, roverarm)
                 cv_img = imtransform(cv_img, self.logoim, logoc)
 
-                cv_img = overlay_transparent(cv_img, self.bong, x = handloc[0], y = handloc[1]-100, overlay_size=(150,100))
 
-            except:
-                pass
+                try:
+
+
+                    cv_img = imtransform(cv_img, self.overarm_R, lelbow)
+                    cv_img = imtransform(cv_img, self.overarm_R, relbow)
+
+                except:
+                    print("Bruh!")
 
             if ret:
                 self.change_pixmap_signal.emit(cv_img)
@@ -107,13 +116,16 @@ class App(QMainWindow):
         vbox.addWidget(self.textLabel)
         # set the vbox layout as the widgets layout
         self.setLayout(vbox)
-
         # create the video capture thread
         self.thread = VideoThread()
         # connect its signal to the update_image slot
         self.thread.change_pixmap_signal.connect(self.update_image)
+        self.goButton.clicked.connect(self.pressed)
         # start the thread
         self.thread.start()
+
+    def pressed(self):
+        self.thread.merchstatus = self.merchSelect.currentText()
 
     def closeEvent(self, event):
         self.thread.stop()
