@@ -74,7 +74,7 @@ def calculate_keypoints(frame, blob_size=368):
 
     points = [(int(x / blob_size * original_width), int(y / blob_size * original_height)) for (x, y) in points]
 
-    return pointshackathon
+    return points
 
 
 def annotate_frame(frame, keypoints):

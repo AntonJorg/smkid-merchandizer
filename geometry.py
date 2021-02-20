@@ -1,5 +1,5 @@
 from parse import *
-import matplotlib.pyplot as plt
+
 coordinates = [(168, 24), (168, 72), (136, 88), (128, 136), (128, 168), (208, 88), (240, 136), (200, 160), (144, 176), (152, 240), (176, 304), (184, 176), (176, 240), (192, 312), (168, 128)]
 # input is an array with rows:
 # Neck: 0, Right Shoulder: 1, Right Elbow: 2, Right Wrist: 3, Left Shoulder: 4, Left Elbow: 5, Left Wrist: 6,
@@ -10,7 +10,10 @@ coordinates = [(168, 24), (168, 72), (136, 88), (128, 136), (128, 168), (208, 88
 c = 5
 w = 7
 def unit_vector(v):
-    return v / np.linalg.norm(v)
+    if np.linalg.norm(v) == 0:
+        return v
+    else:
+        return v / np.linalg.norm(v)
 
 def rotate90(v, clockwise=True):
     return np.array([[0,1],[-1,0]])@v if clockwise else np.array([[0,-1],[1,0]])@v

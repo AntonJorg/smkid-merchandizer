@@ -12,6 +12,7 @@ from keypoints import calculate_keypoints, annotate_frame
 from geometry import *
 from parse import *
 
+
 class VideoThread(QThread):
     change_pixmap_signal = pyqtSignal(np.ndarray)
 
@@ -44,56 +45,34 @@ class VideoThread(QThread):
 
             try:
                 torso_corners = torso(coords[9, :], coords[4, :], coords[1, :], coords[8, :], coords[7, :])
-            except:
-                pass
 
-            try:
                 linefit, meanx = body_line(coords[0, :], coords[9, :], coords[4, :], coords[1, :], coords[8, :],
-                                           coords[7, :])
-            except:
-                pass
+                                               coords[7, :])
 
-            try:
                 loverarm = arm_box(coords[4, :], coords[5, :])
-            except:
-                pass
 
-            try:
                 roverarm = arm_box(coords[1, :], coords[2, :])
-            except:
-                pass
 
-            try:
                 lforearm = arm_box(coords[5, :], coords[6, :])
-            except:
-                pass
 
-            try:
                 rforearm = arm_box(coords[2, :], coords[3, :])
-            except:
-                pass
 
-            try:
                 logoc = logo(linefit, meanx)
-            except:
-                pass
 
-            try:
                 handloc = hand(coords[2, :], coords[3, :])
-            except:
-                pass
 
-            cv_img = imtransform(cv_img, self.torsoim, torso_corners)
+                cv_img = imtransform(cv_img, self.torsoim, torso_corners)
 
-            cv_img = imtransform(cv_img, self.forearm_L, lforearm)
+                cv_img = imtransform(cv_img, self.forearm_L, lforearm)
 
-            cv_img = imtransform(cv_img, self.overarm_L, loverarm)
+                cv_img = imtransform(cv_img, self.overarm_L, loverarm)
 
-            cv_img = imtransform(cv_img, self.forearm_R, rforearm)
-            cv_img = imtransform(cv_img, self.overarm_R, roverarm)
-            cv_img = imtransform(cv_img, self.logoim, logoc)
-            try:
+                cv_img = imtransform(cv_img, self.forearm_R, rforearm)
+                cv_img = imtransform(cv_img, self.overarm_R, roverarm)
+                cv_img = imtransform(cv_img, self.logoim, logoc)
+
                 cv_img = overlay_transparent(cv_img, self.bong, x = handloc[0], y = handloc[1]-100, overlay_size=(150,100))
+
             except:
                 pass
 
