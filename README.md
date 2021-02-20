@@ -8,6 +8,6 @@ This project uses a deep learning based pose estimation model from [this article
 
 1. Clone the repository to your local machine
 2. Download the Caffe model weights from [here](http://posefs1.perception.cs.cmu.edu/OpenPose/models/pose/mpi/pose_iter_160000.caffemodel)
-3. Place the model weights under pose/mpi. This folder should already contain a .prototxt file describing the architecture of the model
+3. Place the model weights under pose/mpi
 4. Run main.py
 5. Enjoy!
