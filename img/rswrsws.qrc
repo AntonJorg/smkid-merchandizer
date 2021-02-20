@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="wsws">
+    <file>hoodie.png</file>
+  </qresource>
+</RCC>

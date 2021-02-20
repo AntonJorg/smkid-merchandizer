@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>900</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>900</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>img/logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="merchSelect">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>710</y>
+      <width>371</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(10, 158, 218);</string>
+    </property>
+    <property name="currentText">
+     <string>Fattig?</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <item>
+     <property name="text">
+      <string>Fattig?</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hoodie</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/hoodie.png</normaloff>img/hoodie.png</iconset>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>670</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Merch</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="drinkSelect">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>710</y>
+      <width>371</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="currentText">
+     <string>Tørstig?</string>
+    </property>
+    <property name="insertPolicy">
+     <enum>QComboBox::NoInsert</enum>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <item>
+     <property name="text">
+      <string>Tørstig?</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Harboe</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/harboe.png</normaloff>img/harboe.png</iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fernet</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/fernet.png</normaloff>img/fernet.png</iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bong</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/bong.png</normaloff>img/bong.png</iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Minttu</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/minttu.png</normaloff>img/minttu.png</iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Nordsø</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>img/nordsoe.png</normaloff>img/nordsoe.png</iconset>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>670</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Drikkelse</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>10</y>
+      <width>791</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>36</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>SM/-KID MERCHANDIZER</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goButton">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>710</y>
+      <width>121</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bungee</family>
+      <pointsize>36</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>GO</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menusmatso">
+    <property name="title">
+     <string>smatso</string>
+    </property>
+    <addaction name="actionja_tak"/>
+   </widget>
+   <addaction name="menusmatso"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionja_tak">
+   <property name="text">
+    <string>ja tak</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="img/rswrsws.qrc"/>
+ </resources>
+ <connections/>
+</ui>
